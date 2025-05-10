@@ -3,9 +3,9 @@ import torch.nn as nn
 
 import torch.nn as nn
 
-class SmokingCNN(nn.Module):
+class PizzaCNN(nn.Module):
     def __init__(self, version: int = 1):
-        super(SmokingCNN, self).__init__()
+        super(PizzaCNN, self).__init__()
 
         if version == 1:
             self.model = nn.Sequential(

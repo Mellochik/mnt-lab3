@@ -7,8 +7,8 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
-from model import SmokingCNN
-from dataset import SmokingDataset
+from model import PizzaCNN
+from dataset import PizzaDataset
 
 def calculate_metrics(y_true, y_pred):
     metrics = {}
@@ -27,7 +27,7 @@ def main(data_path, version, epochs, learning_rate):
         device = torch.device("cpu")
         print("CUDA is not available...")
     
-    dataset = SmokingDataset(data_path)
+    dataset = PizzaDataset(data_path)
 
     train_dataset, test_dataset = train_test_split(dataset, test_size=0.2)
     train_dataset, val_dataset = train_test_split(train_dataset, test_size=0.2)
@@ -35,7 +35,7 @@ def main(data_path, version, epochs, learning_rate):
     train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
 
-    model = SmokingCNN(version=version)
+    model = PizzaCNN(version=version)
     model.to(device)
 
     criterion = nn.BCEWithLogitsLoss()
